@@ -12,7 +12,7 @@ let statusColumn = null;
 let sortState = { key: null, dir: 'asc' };
 let filterState = { search: '', status: 'all' };
 
-const BADGE_PALETTE = ['badge-1', 'badge-2', 'badge-3', 'badge-4', 'badge-5', 'badge-6'];
+const BADGE_PALETTE = ['badge-1', 'badge-2', 'badge-3', 'badge-4'];
 const statusColorMap = new Map();
 
 async function init() {
@@ -181,10 +181,11 @@ function renderBody(rows) {
         td.appendChild(a);
       } else if (statusColumn && col.label === statusColumn.label && cell.value) {
         const span = document.createElement('span');
-        span.className = `badge ${statusColorMap.get(cell.value) || 'badge-6'}`;
+        span.className = `badge ${statusColorMap.get(cell.value) || 'badge-4'}`;
         span.textContent = cell.display;
         td.appendChild(span);
       } else {
+        if (col.type === 'number' || /date/i.test(col.label)) td.className = 'cell-mono';
         td.textContent = cell.display;
       }
       tr.appendChild(td);

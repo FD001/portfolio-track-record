@@ -1,20 +1,30 @@
 :root {
-  --bg: #f7f7f5;
-  --surface: #ffffff;
-  --border: #e2e2df;
-  --text: #1b1b18;
-  --text-muted: #6b6b66;
-  --accent: #2d5f4c;
-  --header-bg: #1b1b18;
-  --header-text: #f7f7f5;
-  --row-alt: #fafaf8;
-  --link: #2d5f4c;
-  --badge-1: #2d5f4c;
-  --badge-2: #8a5a2b;
-  --badge-3: #4a4a90;
-  --badge-4: #a13d3d;
-  --badge-5: #3d7a9e;
-  --badge-6: #6b6b66;
+  --ink: #1a1a18;
+  --parchment: #e8e5de;
+  --bronze: #9b7355;
+  --slate: #2c3e50;
+  --sand: #c9b99a;
+  --signal-red: #d4373a;
+
+  --bg: var(--parchment);
+  --text: var(--ink);
+  --text-muted: rgba(26, 26, 24, 0.62);
+  --border: rgba(26, 26, 24, 0.18);
+  --row-alt: rgba(201, 185, 154, 0.18);
+  --link: var(--bronze);
+
+  --badge-1: var(--bronze);
+  --badge-1-text: var(--parchment);
+  --badge-2: var(--slate);
+  --badge-2-text: var(--parchment);
+  --badge-3: var(--sand);
+  --badge-3-text: var(--ink);
+  --badge-4: var(--ink);
+  --badge-4-text: var(--parchment);
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-data: 'Courier New', Courier, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -23,26 +33,29 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  line-height: 1.55;
 }
 
 .page {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 3rem;
+  padding: 3rem 1.25rem 3.5rem;
 }
 
 .page-header h1 {
-  margin: 0 0 0.4rem;
-  font-size: 1.9rem;
-  letter-spacing: -0.02em;
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.3rem;
+  letter-spacing: -0.01em;
 }
 
 .subtitle {
-  margin: 0 0 1.75rem;
+  margin: 0 0 2rem;
   color: var(--text-muted);
-  max-width: 60ch;
+  max-width: 62ch;
+  font-size: 1.02rem;
 }
 
 .controls {
@@ -50,16 +63,17 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
 #search-input,
 #status-filter {
   font: inherit;
-  padding: 0.5rem 0.7rem;
+  font-family: var(--font-body);
+  padding: 0.5rem 0.75rem;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--surface);
+  border-radius: 3px;
+  background: var(--parchment);
   color: var(--text);
 }
 
@@ -71,52 +85,61 @@ body {
 .result-count {
   margin-left: auto;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-family: var(--font-data);
+  font-size: 0.82rem;
   white-space: nowrap;
 }
 
 .table-wrapper {
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   min-width: 480px;
 }
 
 thead th {
   position: sticky;
   top: 0;
-  background: var(--header-bg);
-  color: var(--header-text);
+  background: var(--parchment);
+  color: var(--text);
   text-align: left;
-  padding: 0.65rem 0.9rem;
-  font-weight: 600;
+  padding: 0.6rem 0.9rem;
+  font-family: var(--font-data);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
+  border-bottom: 2px solid var(--ink);
 }
 
 thead th:hover {
-  background: #333;
+  color: var(--bronze);
 }
 
 thead th .arrow {
   display: inline-block;
   margin-left: 0.3rem;
-  opacity: 0.6;
-  font-size: 0.75em;
+  opacity: 0.7;
+  font-size: 0.9em;
 }
 
 tbody td {
-  padding: 0.6rem 0.9rem;
+  padding: 0.65rem 0.9rem;
   border-top: 1px solid var(--border);
   vertical-align: top;
+}
+
+tbody td.cell-mono {
+  font-family: var(--font-data);
+  font-size: 0.9rem;
 }
 
 tbody tr:nth-child(even) {
@@ -124,9 +147,9 @@ tbody tr:nth-child(even) {
 }
 
 .cell-link a {
-  color: var(--link);
+  color: var(--bronze);
   text-decoration: none;
-  font-weight: 600;
+  font-style: italic;
   white-space: nowrap;
 }
 
@@ -136,45 +159,34 @@ tbody tr:nth-child(even) {
 
 .badge {
   display: inline-block;
-  padding: 0.15rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #fff;
+  padding: 0.18rem 0.6rem;
+  font-family: var(--font-data);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
-.badge-1 { background: var(--badge-1); }
-.badge-2 { background: var(--badge-2); }
-.badge-3 { background: var(--badge-3); }
-.badge-4 { background: var(--badge-4); }
-.badge-5 { background: var(--badge-5); }
-.badge-6 { background: var(--badge-6); }
+.badge-1 { background: var(--badge-1); color: var(--badge-1-text); }
+.badge-2 { background: var(--badge-2); color: var(--badge-2-text); }
+.badge-3 { background: var(--badge-3); color: var(--badge-3-text); }
+.badge-4 { background: var(--badge-4); color: var(--badge-4-text); }
+/* Signal Red is deliberately excluded from this rotation — brand guidance
+   reserves it for loss/risk disclosures, not decorative status labels. */
 
 .status-message {
   padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
-  color: var(--text-muted);
+  border: 1px solid var(--signal-red);
+  border-left: 4px solid var(--signal-red);
+  background: var(--parchment);
+  color: var(--text);
+  font-family: var(--font-body);
 }
 
 .page-footer {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #15151a;
-    --surface: #1d1d23;
-    --border: #33333c;
-    --text: #ececec;
-    --text-muted: #9a9aa2;
-    --header-bg: #0d0d10;
-    --header-text: #ececec;
-    --row-alt: #202027;
-    --link: #7fd6b0;
-  }
+  font-family: var(--font-data);
+  font-size: 0.78rem;
 }
