@@ -185,7 +185,14 @@ function renderBody(rows) {
         span.textContent = cell.display;
         td.appendChild(span);
       } else {
-        if (col.type === 'number' || /date/i.test(col.label)) td.className = 'cell-mono';
+        const classes = [];
+        if (col.type === 'number' || /date/i.test(col.label)) classes.push('cell-mono');
+        if (/return/i.test(col.label) && col.type === 'number' && cell.value != null && cell.value !== '') {
+          const num = Number(cell.value);
+          if (num > 0) classes.push('cell-positive');
+          else if (num < 0) classes.push('cell-negative');
+        }
+        if (classes.length) td.className = classes.join(' ');
         td.textContent = cell.display;
       }
       tr.appendChild(td);

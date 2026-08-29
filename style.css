@@ -5,6 +5,7 @@
   --slate: #2c3e50;
   --sand: #c9b99a;
   --signal-red: #d4373a;
+  --gain-green: #3f6b48;
 
   --bg: var(--parchment);
   --text: var(--ink);
@@ -38,9 +39,9 @@ body {
 }
 
 .page {
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 3rem 1.25rem 3.5rem;
+  padding: 3rem 1.5rem 3.5rem;
 }
 
 .page-header h1 {
@@ -97,9 +98,10 @@ body {
 
 table {
   width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
-  font-size: 0.94rem;
-  min-width: 480px;
+  font-size: 0.88rem;
+  min-width: 760px;
 }
 
 thead th {
@@ -108,12 +110,12 @@ thead th {
   background: var(--parchment);
   color: var(--text);
   text-align: left;
-  padding: 0.6rem 0.9rem;
+  padding: 0.55rem 0.6rem;
   font-family: var(--font-data);
   font-weight: 700;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
@@ -132,14 +134,25 @@ thead th .arrow {
 }
 
 tbody td {
-  padding: 0.65rem 0.9rem;
+  padding: 0.55rem 0.6rem;
   border-top: 1px solid var(--border);
   vertical-align: top;
+  white-space: nowrap;
 }
 
 tbody td.cell-mono {
   font-family: var(--font-data);
   font-size: 0.9rem;
+}
+
+tbody td.cell-positive {
+  color: var(--gain-green);
+  font-weight: 700;
+}
+
+tbody td.cell-negative {
+  color: var(--signal-red);
+  font-weight: 700;
 }
 
 tbody tr:nth-child(even) {
